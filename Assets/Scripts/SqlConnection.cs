@@ -84,28 +84,11 @@ public class SqlConnection : MonoBehaviour
                 int userno = reader.GetInt32(reader.GetOrdinal("userNo"));
                 string name = reader.GetString(reader.GetOrdinal("Name"));
                 int age = reader.GetInt32(reader.GetOrdinal("Age"));
-
-                //Debug.Log("UserNo : " + userno + " , Name : " + name + " , Age : " + age);                
+           
                 data_object.GetComponentInChildren<TMP_Text>().text =
                     ("UserNo : " + userno + " , Name : " + name + " , Age : " + age + "\n");
                 GameObject loadData = Instantiate(data_object, parentTransform);
-                
-
-
-                /*RectTransform rectTransform = data_object.GetComponent<RectTransform>();
-                
-                if (rectTransform != null)
-                {
-                    rectTransform.anchoredPosition = Vector2.zero;
-                    rectTransform.localScale = Vector3.one;
-                }
-                else
-                {
-                    Debug.LogWarning("Loaded prefab does not have RectTransform component!");
-                }
-                */
             }
-
             reader.Close();
         }
         catch (NpgsqlException ex)
@@ -118,13 +101,14 @@ public class SqlConnection : MonoBehaviour
         }
     }
 
-    public void DeleteNo()
+    public void DeleteUserByNo(int userNo)
     {
         try
         {
-            // 데이터 삭제
-            string deleteQuery = "DELETE FROM Users;";
+            string deleteQuery = "DELETE FROM Users WHERE userNo = @UserNo;";
             NpgsqlCommand deleteCommand = new NpgsqlCommand(deleteQuery, connection);
+            deleteCommand.Parameters.AddWithValue("@UserNo", userNo);
+
             int rowsAffected = deleteCommand.ExecuteNonQuery();
             Debug.Log("Rows Affected: " + rowsAffected);
         }
