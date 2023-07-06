@@ -87,30 +87,12 @@ public class SqlConnection : MonoBehaviour
            
                 data_object.GetComponentInChildren<TMP_Text>().text =
                     ("UserNo : " + userno + " , Name : " + name + " , Age : " + age + "\n");
+                
                 GameObject loadData = Instantiate(data_object, parentTransform);
+
+                loadData.GetComponent<UserNoComponent>().UserNo = userno;
             }
             reader.Close();
-        }
-        catch (NpgsqlException ex)
-        {
-            Debug.LogError("PostgreSQL Exception: " + ex.Message);
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError("Exception: " + ex.Message);
-        }
-    }
-
-    public void DeleteUserByNo(int userNo)
-    {
-        try
-        {
-            string deleteQuery = "DELETE FROM Users WHERE userNo = @UserNo;";
-            NpgsqlCommand deleteCommand = new NpgsqlCommand(deleteQuery, connection);
-            deleteCommand.Parameters.AddWithValue("@UserNo", userNo);
-
-            int rowsAffected = deleteCommand.ExecuteNonQuery();
-            Debug.Log("Rows Affected: " + rowsAffected);
         }
         catch (NpgsqlException ex)
         {
