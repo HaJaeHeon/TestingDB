@@ -51,4 +51,13 @@ public class DeleteValue : MonoBehaviour
         }
         Destroy(this.gameObject);
     }
+
+    void OnDestroy()
+    {
+        // 연결 종료
+        if (connection != null && connection.State == System.Data.ConnectionState.Open)
+        {
+            connection.Close();
+        }
+    }
 }
