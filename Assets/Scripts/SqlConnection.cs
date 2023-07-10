@@ -2,6 +2,7 @@ using UnityEngine;
 using Npgsql;
 using System;
 using TMPro;
+using System.Collections;
 
 public class SqlConnection : MonoBehaviour
 {
@@ -9,6 +10,12 @@ public class SqlConnection : MonoBehaviour
 
     public TMP_InputField User_name_txt;
     public TMP_InputField User_age_txt;
+
+    public TMP_Text warning_bothText;
+    public TMP_Text warning_String;
+    public TMP_Text warning_Int;
+
+    public TMP_Text verifyText;
 
     //public TMP_Text result_txt;
 
@@ -46,6 +53,28 @@ public class SqlConnection : MonoBehaviour
             string insertQuery = "INSERT INTO Users (Name, Age) VALUES (@Name, @Age);";
             NpgsqlCommand insertCommand = new NpgsqlCommand(insertQuery, connection);
 
+            if (string.IsNullOrEmpty(User_name_txt.text) || string.IsNullOrEmpty(User_age_txt.text))
+            {
+                StartCoroutine("WarningInsertMessage");
+                return;
+            }
+
+            else if (User_name_txt.text != null && string.IsNullOrEmpty(User_name_txt.text))
+
+
+            {
+                User_name_txt.text = null;
+                StartCoroutine("WarningStringMessage");
+                return;
+            }
+            else if (User_age_txt.text != null && !IsInteger(User_age_txt.text))
+            {
+                User_age_txt.text = null;
+                StartCoroutine("WarningIntegerMessage");
+                return;
+
+            }
+
             char[] newName = User_name_txt.text.ToCharArray();
             int newAge = Int32.Parse(User_age_txt.text);
 
@@ -57,6 +86,8 @@ public class SqlConnection : MonoBehaviour
             int rowsAffected = insertCommand.ExecuteNonQuery();
             //Rows Affected : 삽입에 성공한 행의 수가 출력
             Debug.Log("Rows Affected: " + rowsAffected);
+
+            StartCoroutine("SuccessInsert");
         }
         catch (NpgsqlException ex)
         {
@@ -135,5 +166,41 @@ public class SqlConnection : MonoBehaviour
         {
             Debug.LogError("Exception: " + ex.Message);
         }
+    }
+
+    IEnumerator WarningInsertMessage()
+    {
+        warning_bothText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        warning_bothText.gameObject.SetActive(false);
+    }
+
+    IEnumerator WarningStringMessage()
+    {
+        warning_String.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        warning_String.gameObject.SetActive(false);
+    }
+
+    IEnumerator WarningIntegerMessage()
+    {
+        warning_Int.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        warning_Int.gameObject.SetActive(false);
+    }
+
+    IEnumerator SuccessInsert()
+    {
+        verifyText.color = Color.green;
+        verifyText.text = "Success Insert Values";
+        verifyText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        verifyText.gameObject.SetActive(false);
+    }
+
+    bool IsInteger(string text)
+    {
+        int result;
+        return int.TryParse(text, out result);
     }
 }
