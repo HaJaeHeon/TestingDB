@@ -36,3 +36,7 @@ Delete 만들기
 입력한 정보가 맞는지 확인하는 작업
 
 요구하는 조건 이외를 넣었을 때나 빈칸일 경우 오류 띄우기
+
+# 빌드
+
+https://drive.google.com/drive/folders/10erGdSim-4ypyfhNVq-JWfnGN-Me6gNl?usp=sharing
