@@ -8,18 +8,18 @@ public class SqlConnection : MonoBehaviour
 {
     private NpgsqlConnection connection;
 
-    public TMP_InputField User_name_txt;
-    public TMP_InputField User_age_txt;
+    public TMP_InputField userNameText;
+    public TMP_InputField userAgeText;
 
-    public TMP_Text warning_bothText;
-    public TMP_Text warning_String;
-    public TMP_Text warning_Int;
+    public TMP_Text warningNotStringAndIntText;
+    public TMP_Text warningNotString;
+    public TMP_Text warningNotInt;
 
     public TMP_Text verifyText;
 
     //public TMP_Text result_txt;
 
-    public GameObject data_object;
+    public GameObject dataObject;
     public Transform parentTransform;
 
     void Start()
@@ -34,102 +34,95 @@ public class SqlConnection : MonoBehaviour
             // 테이블 초기화
             InitializeTable();
         }
-        catch (NpgsqlException ex)
+        catch (NpgsqlException ex)  //Sql관련 예외 처리
         {
             Debug.LogError("PostgreSQL Exception: " + ex.Message);
         }
-        catch (Exception ex)
+        catch (Exception ex)    //일반적인 예외 처리
         {
             Debug.LogError("Exception: " + ex.Message);
         }
     }
 
-
+    //데이터 삽입
     public void InsertValueButton()
     {
         try
         {
-            // 데이터 삽입 예시
             string insertQuery = "INSERT INTO Users (Name, Age) VALUES (@Name, @Age);";
             NpgsqlCommand insertCommand = new NpgsqlCommand(insertQuery, connection);
 
-            if (string.IsNullOrEmpty(User_name_txt.text) || string.IsNullOrEmpty(User_age_txt.text))
+            if (string.IsNullOrEmpty(userNameText.text) || string.IsNullOrEmpty(userAgeText.text))  //InputField의 name 이나 age 가 비어있으면
             {
                 StartCoroutine("WarningInsertMessage");
                 return;
             }
 
-            else if (User_name_txt.text != null && string.IsNullOrEmpty(User_name_txt.text))
-
-
+            else if (userNameText.text != null && string.IsNullOrEmpty(userNameText.text))  //InputField의 name은 채워졌지만 string으로 변환시 값이 없는경우?
             {
-                User_name_txt.text = null;
+                userNameText.text = null;
                 StartCoroutine("WarningStringMessage");
                 return;
             }
-            else if (User_age_txt.text != null && !IsInteger(User_age_txt.text))
+            else if (userAgeText.text != null && !IsInteger(userAgeText.text))  //InputField의 age는 채워졌지만 age가 정수형이 아닌 경우
             {
-                User_age_txt.text = null;
+                userAgeText.text = null;
                 StartCoroutine("WarningIntegerMessage");
                 return;
 
             }
 
-            char[] newName = User_name_txt.text.ToCharArray();
-            int newAge = Int32.Parse(User_age_txt.text);
+            char[] newName = userNameText.text.ToCharArray();
+            int newAge = Int32.Parse(userAgeText.text);
 
-            //AddWithValue 메서드를 사용하여 파라미터를 추가
+            //파라미터 추가
             insertCommand.Parameters.AddWithValue("@Name", newName);
             insertCommand.Parameters.AddWithValue("@Age", newAge);
-
-            //ExecuteNonQuery 메서드를 호출하여 쿼리 실행
-            int rowsAffected = insertCommand.ExecuteNonQuery();
-            //Rows Affected : 삽입에 성공한 행의 수가 출력
-            Debug.Log("Rows Affected: " + rowsAffected);
+            
+            int rowsAffected = insertCommand.ExecuteNonQuery(); //쿼리 실행
+            Debug.Log("Rows Affected: " + rowsAffected);    //추가된 행의 갯수 찍기
 
             StartCoroutine("SuccessInsert");
         }
-        catch (NpgsqlException ex)
+        catch (NpgsqlException ex)  //Sql관련 예외 처리
         {
             Debug.LogError("PostgreSQL Exception: " + ex.Message);
         }
-        catch (Exception ex)
+        catch (Exception ex)    //일반적인 예외 처리
         {
             Debug.LogError("Exception: " + ex.Message);
         }
     }
 
+    //테이블 조회
     public void ShowAll()
     {
         try
         {
-            // 테이블 전체 조회
             string query = "SELECT * FROM Users;";
             NpgsqlCommand command = new NpgsqlCommand(query, connection);
             NpgsqlDataReader reader = command.ExecuteReader();
 
-            // 결과 읽기
             while (reader.Read())
             {
-                // 데이터 처리
                 int userno = reader.GetInt32(reader.GetOrdinal("userNo"));
                 string name = reader.GetString(reader.GetOrdinal("Name"));
                 int age = reader.GetInt32(reader.GetOrdinal("Age"));
            
-                data_object.GetComponentInChildren<TMP_Text>().text =
+                dataObject.GetComponentInChildren<TMP_Text>().text =
                     ("UserNo : " + userno + " , Name : " + name + " , Age : " + age + "\n");
                 
-                GameObject loadData = Instantiate(data_object, parentTransform);
+                GameObject loadData = Instantiate(dataObject, parentTransform);
 
                 loadData.GetComponent<UserNoComponent>().UserNo = userno;
             }
             reader.Close();
         }
-        catch (NpgsqlException ex)
+        catch (NpgsqlException ex)  //Sql관련 예외 처리
         {
             Debug.LogError("PostgreSQL Exception: " + ex.Message);
         }
-        catch (Exception ex)
+        catch (Exception ex)    //일반적인 예외 처리
         {
             Debug.LogError("Exception: " + ex.Message);
         }
@@ -158,35 +151,37 @@ public class SqlConnection : MonoBehaviour
             NpgsqlCommand createCommand = new NpgsqlCommand(createQuery, connection);
             createCommand.ExecuteNonQuery();
         }
-        catch (NpgsqlException ex)
+        catch (NpgsqlException ex)  //Sql관련 예외 처리
         {
             Debug.LogError("PostgreSQL Exception: " + ex.Message);
         }
-        catch (Exception ex)
+        catch (Exception ex)    //일반적인 예외 처리
         {
             Debug.LogError("Exception: " + ex.Message);
         }
     }
 
+    //성공인지 실패인지 Text로 표현
+
     IEnumerator WarningInsertMessage()
     {
-        warning_bothText.gameObject.SetActive(true);
+        warningNotStringAndIntText.gameObject.SetActive(true);
         yield return new WaitForSeconds(2f);
-        warning_bothText.gameObject.SetActive(false);
+        warningNotStringAndIntText.gameObject.SetActive(false);
     }
 
     IEnumerator WarningStringMessage()
     {
-        warning_String.gameObject.SetActive(true);
+        warningNotString.gameObject.SetActive(true);
         yield return new WaitForSeconds(2f);
-        warning_String.gameObject.SetActive(false);
+        warningNotString.gameObject.SetActive(false);
     }
 
     IEnumerator WarningIntegerMessage()
     {
-        warning_Int.gameObject.SetActive(true);
+        warningNotInt.gameObject.SetActive(true);
         yield return new WaitForSeconds(2f);
-        warning_Int.gameObject.SetActive(false);
+        warningNotInt.gameObject.SetActive(false);
     }
 
     IEnumerator SuccessInsert()
@@ -198,6 +193,7 @@ public class SqlConnection : MonoBehaviour
         verifyText.gameObject.SetActive(false);
     }
 
+    //parsing한 값이 정수인지 bool로 표현
     bool IsInteger(string text)
     {
         int result;

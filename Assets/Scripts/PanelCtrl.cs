@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//panel바꾸기
 public class PanelCtrl : MonoBehaviour
 {
     public enum ActivePanel
     {
-        CheckingPage = 0,
-        RegisterPage = 1
+        CheckingPage = 0,   //확인 페이지
+        RegisterPage = 1    //등록 페이지
     }
 
-    public GameObject[] panels;
+    public GameObject[] panelArray;
 
     public void CheckingPage()
     {
@@ -22,12 +23,12 @@ public class PanelCtrl : MonoBehaviour
         ChangePanel(ActivePanel.RegisterPage);
     }
 
-    private void ChangePanel(ActivePanel panel)
+    private void ChangePanel(ActivePanel activePanel)
     {
-        foreach (GameObject _panels in panels)
+        foreach (GameObject panel in panelArray)
         {
-            _panels.SetActive(false);
+            panel.SetActive(false);
         }
-        panels[(int)panel].SetActive(true);
+        panelArray[(int)activePanel].SetActive(true);
     }
 }

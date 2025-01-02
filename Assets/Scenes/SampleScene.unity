@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 102518994}
   - component: {fileID: 102518993}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -530,7 +530,7 @@ GameObject:
   - component: {fileID: 136913377}
   - component: {fileID: 136913376}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: CheckingAgeText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -665,7 +665,7 @@ GameObject:
   - component: {fileID: 230591800}
   - component: {fileID: 230591799}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: CheckingUserNameText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -877,7 +877,7 @@ GameObject:
   - component: {fileID: 354744189}
   - component: {fileID: 354744188}
   m_Layer: 0
-  m_Name: db
+  m_Name: DBManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -895,13 +895,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0bfa29b988375e489abbe9538dc4b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  User_name_txt: {fileID: 2077855611}
-  User_age_txt: {fileID: 873864064}
-  warning_bothText: {fileID: 1304771128}
-  warning_String: {fileID: 1022496388}
-  warning_Int: {fileID: 546766142}
+  userNameText: {fileID: 2077855611}
+  userAgeText: {fileID: 873864064}
+  warningNotStringAndIntText: {fileID: 1304771128}
+  warningNotString: {fileID: 1022496388}
+  warningNotInt: {fileID: 546766142}
   verifyText: {fileID: 1030274263}
-  data_object: {fileID: 6841363372255496389, guid: a7f7c5ee60b84bf4086945ef35f9887b, type: 3}
+  dataObject: {fileID: 6841363372255496389, guid: a7f7c5ee60b84bf4086945ef35f9887b, type: 3}
   parentTransform: {fileID: 348873424}
 --- !u!4 &354744189
 Transform:
@@ -1110,7 +1110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fba88133a4e86e4cb18aa4bd4f6eadd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panels:
+  panelArray:
   - {fileID: 1940362422}
   - {fileID: 1984911342}
 --- !u!1 &407180625
@@ -1281,7 +1281,7 @@ GameObject:
   - component: {fileID: 546766143}
   - component: {fileID: 546766142}
   m_Layer: 5
-  m_Name: Text (TMP) (3)
+  m_Name: InsertIntegerText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1300,7 +1300,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1984911343}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1645,7 +1645,7 @@ GameObject:
   - component: {fileID: 807808172}
   - component: {fileID: 807808171}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ResisterUserNameText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1925,7 +1925,7 @@ GameObject:
   - component: {fileID: 873864065}
   - component: {fileID: 873864064}
   m_Layer: 5
-  m_Name: InputField (TMP) (1)
+  m_Name: AgeInputField (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2210,7 +2210,7 @@ GameObject:
   - component: {fileID: 957384649}
   - component: {fileID: 957384648}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: MainPageCheckingButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2427,7 +2427,7 @@ GameObject:
   - component: {fileID: 1022496389}
   - component: {fileID: 1022496388}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: InsertStringText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2446,7 +2446,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1984911343}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2562,7 +2562,7 @@ GameObject:
   - component: {fileID: 1030274264}
   - component: {fileID: 1030274263}
   m_Layer: 5
-  m_Name: Text (TMP) (5)
+  m_Name: VerifyingText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2773,7 +2773,7 @@ GameObject:
   - component: {fileID: 1052313026}
   - component: {fileID: 1052313025}
   m_Layer: 5
-  m_Name: MainPage
+  m_Name: MainPagePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2851,7 +2851,7 @@ GameObject:
   - component: {fileID: 1117048509}
   - component: {fileID: 1117048508}
   m_Layer: 0
-  m_Name: Init
+  m_Name: InitWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2870,7 +2870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFullScreen: 0
-  wfToggle: {fileID: 1187435097}
+  fullScreenToggle: {fileID: 1187435097}
 --- !u!4 &1117048509
 Transform:
   m_ObjectHideFlags: 0
@@ -3032,7 +3032,7 @@ GameObject:
   - component: {fileID: 1187435096}
   - component: {fileID: 1187435097}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: FullScreenToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3120,7 +3120,7 @@ GameObject:
   - component: {fileID: 1249664248}
   - component: {fileID: 1249664247}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: InputDataText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3411,7 +3411,7 @@ GameObject:
   - component: {fileID: 1304771129}
   - component: {fileID: 1304771128}
   m_Layer: 5
-  m_Name: Text (TMP) (4)
+  m_Name: InsertUserNameText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3430,7 +3430,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1984911343}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3918,7 +3918,7 @@ GameObject:
   - component: {fileID: 1481974965}
   - component: {fileID: 1481974964}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: ShowResultButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4367,7 +4367,7 @@ GameObject:
   - component: {fileID: 1674281028}
   - component: {fileID: 1674281027}
   m_Layer: 5
-  m_Name: Button
+  m_Name: MainPageRegisterPageButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4500,7 +4500,7 @@ GameObject:
   - component: {fileID: 1719508176}
   - component: {fileID: 1719508175}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: CheckResultText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4636,7 +4636,7 @@ GameObject:
   - component: {fileID: 1747043257}
   - component: {fileID: 1747043256}
   m_Layer: 5
-  m_Name: InputField (TMP) (1)
+  m_Name: CheckingAgeInputField (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4812,7 +4812,7 @@ GameObject:
   - component: {fileID: 1764475440}
   - component: {fileID: 1764475439}
   m_Layer: 5
-  m_Name: Button
+  m_Name: CheckingButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5080,7 +5080,7 @@ GameObject:
   - component: {fileID: 1787437471}
   - component: {fileID: 1787437470}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: ResitsterAgeText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5517,7 +5517,7 @@ GameObject:
   - component: {fileID: 1935232898}
   - component: {fileID: 1935232897}
   m_Layer: 5
-  m_Name: InputField (TMP)
+  m_Name: CheckingUserNameInputField (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5842,7 +5842,7 @@ GameObject:
   - component: {fileID: 1959715963}
   - component: {fileID: 1959715962}
   m_Layer: 0
-  m_Name: viewResult
+  m_Name: ViewResult
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5889,7 +5889,7 @@ GameObject:
   - component: {fileID: 1984911345}
   - component: {fileID: 1984911344}
   m_Layer: 5
-  m_Name: RegisterPage
+  m_Name: RegisterPagePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5914,9 +5914,9 @@ RectTransform:
   - {fileID: 873864063}
   - {fileID: 1481974963}
   - {fileID: 1578992271}
+  - {fileID: 1304771127}
   - {fileID: 1022496387}
   - {fileID: 546766141}
-  - {fileID: 1304771127}
   - {fileID: 1030274262}
   m_Father: {fileID: 376101528}
   m_RootOrder: 1
@@ -6112,7 +6112,7 @@ GameObject:
   - component: {fileID: 2077855612}
   - component: {fileID: 2077855611}
   m_Layer: 5
-  m_Name: InputField (TMP)
+  m_Name: UserNameInputField (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6288,7 +6288,7 @@ GameObject:
   - component: {fileID: 2104074375}
   - component: {fileID: 2104074374}
   m_Layer: 5
-  m_Name: Button
+  m_Name: InputDataButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

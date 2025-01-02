@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class InitWindow : MonoBehaviour
 {
     public bool isFullScreen = false;
-    public Toggle wfToggle;
+    public Toggle fullScreenToggle;
 
     void Start()
     {
@@ -22,7 +22,7 @@ public class InitWindow : MonoBehaviour
     void Update()
     {
         // 키 입력을 통한 창 모드 변경
-        if (wfToggle.isOn)
+        if (fullScreenToggle.isOn)
         {
             isFullScreen = true;
             ToggleFullScreen();
